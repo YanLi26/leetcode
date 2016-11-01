@@ -4,7 +4,7 @@
 \#include\<unordered_map\>
 
 ##intial
-unordered_map<int, string> map;
+unordered_map\<int, string\> map;
 
 ##type
 pair\<int, string\>
@@ -13,6 +13,10 @@ pair\<int, string\>
 map.insert(make_pair(1, "a");
 
 ##traverse
+for (auto it = m.begin(); it != m.end(); ++it){}
+
+for(unordered_map\<int, int\>::iterator iter = map.begin(); iter != map.end(); iter++){}
+
 unordered_map<int, string>::iterator it;
 
 it -> first; or (*it).first; //the key value

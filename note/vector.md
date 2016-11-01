@@ -7,7 +7,6 @@ vector\<int\>vec;
 ##insert
 1. vec.push_back(a); //insert element in tail
 2. vec.insert(vec.begin()+i, a); //insert a behind i+1 element
-3. s
 
 ##delete
 1. vec.erase(vec.begin()+2); //delete the third element
