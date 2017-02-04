@@ -3,14 +3,13 @@ public:
     int numberOfBoomerangs(vector<pair<int, int>>& points) {
         int res = 0;
         for(int i = 0; i < points.size(); i++){
-            unordered_map<long,int> tmp;
+            unordered_map<double, int> tmp;
             for(int j = 0; j < points.size(); j++){
-                if(j != i){
-                    tmp[pow(points[j].first - points[i].first, 2) + pow(points[j].second - points[i].second, 2)]++;
-                }
+                tmp[pow(points[i].first-points[j].first,2)+pow(points[i].second-points[j].second,2)]++;
             }
-            for(auto k: tmp){
-                res += k.second*(k.second - 1);
+            
+            for(auto it = tmp.begin(); it != tmp.end(); it++){
+                res += (it->second)*(it->second - 1);
             }
         }
         return res;
