@@ -1,20 +1,18 @@
-//if it has a loop, it is false
 class Solution {
 public:
     bool isHappy(int n) {
-        if(n == 1) return true;
-        unordered_set<int> isLoop;
-        isLoop.insert(n);
+        if(n == 0) return false;
+        vector<int> checkLoop;
         while(1){
-            int sum = 0;
+            int tmp = 0;
             while(n){
-                sum += (n % 10) * (n % 10);
-                n/=10;
+                tmp += (n%10)*(n%10);
+                n /= 10;
             }
-            if(sum == 1) return true;
-            else if(isLoop.find(sum) != isLoop.end()) return false;
-            else isLoop.insert(sum);
-            n = sum;
+            n = tmp;
+            if(n == 1) return true;
+            else if(find(checkLoop.begin(), checkLoop.end(), n) != checkLoop.end()) return false;
+            if(n!=0) checkLoop.push_back(n);
         }
     }
 };

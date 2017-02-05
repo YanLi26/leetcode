@@ -9,13 +9,13 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        if(head == NULL) return head;
-        ListNode *carry = head;
-        while(carry -> next != NULL){
-            if(carry -> val == carry -> next -> val){
-                carry -> next = carry -> next -> next;
+        if(!head) return NULL;
+        ListNode* tmp = head;
+        while(tmp -> next){
+            if(tmp -> val == tmp -> next -> val){
+                tmp -> next = tmp -> next -> next;
             }
-            else carry = carry -> next;
+            else tmp = tmp -> next;
         }
         return head;
     }
