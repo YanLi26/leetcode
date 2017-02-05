@@ -1,16 +1,16 @@
-/*http://www.cnblogs.com/grandyang/p/5926674.html*/
 class Solution {
 public:
     string toHex(int num) {
+        if(num == 0) return "0";
         string res = "";
-        for(int i = 0; i < 8 && num; i++){
-            //choose the last 4 bits
-            int t = num & 0xf;
-            if(t >= 10) res = char('a' + t - 10) + res;
-            else res = char('0' + t) + res;
-            num >>= 4;
+        unsigned int num_unsign = num;
+        while(num_unsign){
+            int tmp = num_unsign % 16;
+            if(tmp >= 10) res.push_back(tmp - 10 +'a');
+            else res.push_back(tmp + '0');
+            num_unsign/=16;
         }
-        if(res.empty()) return "0";
-        else return res;
+        reverse(res.begin(),res.end());
+        return res;
     }
 };
