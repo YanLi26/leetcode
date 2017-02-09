@@ -1,4 +1,5 @@
 //KMP
+//http://www.cnblogs.com/grandyang/p/6087347.html
 class Solution {
 public:
     bool repeatedSubstringPattern(string str) {
@@ -12,3 +13,6 @@ public:
         return next[str.size()]&&next[str.size()]%(str.size()-next[str.size()])==0;
     }
 };
+
+
+
