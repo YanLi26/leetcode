@@ -1,14 +1,14 @@
-/*http://bangbingsyb.blogspot.com/2014/11/leetcode-climbing-stairs.html*/
+//http://www.cnblogs.com/grandyang/p/4079165.html
 class Solution {
 public:
     int climbStairs(int n) {
-        if(n < 0) return 0;
-        int p1 = 1, p2 =1;
-        for(int i=2; i<=n; i++) {
-            int temp = p1+p2;
-            p1 = p2;
-            p2 = temp;
+        if(n <= 1) return 1;
+        vector<int>stair(n);
+        stair[0] = 1;
+        stair[1] = 2;
+        for(int i = 2; i < n; i ++){
+            stair[i] = stair[i-1] + stair[i-2];
         }
-        return p2;
+        return stair.back();
     }
 };
