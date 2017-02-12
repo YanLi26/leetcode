@@ -9,23 +9,23 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode *tmp = new ListNode(0);
-        ListNode *head = tmp;
+        ListNode* dummy = new ListNode(-1);
+        ListNode* curr = dummy;
         
-        while(l1 != NULL && l2 != NULL){
-            if(l1 -> val > l2 ->val){
-                tmp -> next = l2;
-                l2 = l2 ->next;
+        while(l1 && l2){
+            if(l1->val <= l2->val){
+                curr->next = l1;
+                curr = l1;
+                l1 = l1->next;
             }
             else{
-                tmp -> next = l1;
-                l1 = l1 -> next;
+                curr->next = l2;
+                curr = l2;
+                l2 = l2->next;
             }
-            tmp = tmp -> next;
         }
-        
-        if(l1 != NULL) tmp -> next =l1;
-        else tmp -> next = l2;
-        return head -> next;
+        if(l1) curr->next = l1;
+        else if(l2) curr->next = l2;
+        return dummy->next;
     }
 };
