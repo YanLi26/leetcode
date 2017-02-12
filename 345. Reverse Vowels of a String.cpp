@@ -1,20 +1,23 @@
 class Solution {
 public:
     string reverseVowels(string s) {
-        vector<char> tmp;
-        for(char a: s){
-            if(a == 'a' || a == 'e' || a == 'i' || a == 'o' || a=='u'
-            || a == 'A' || a == 'E' || a == 'I' || a == 'O' || a=='U'){
-                tmp.push_back(a);
+        int left = 0, right = s.size()-1;
+        while(left <= right){
+            if(isVowels(s[left]) && isVowels(s[right])){
+                char tmp = s[left];
+                s[left] = s[right];
+                s[right] = tmp;
+                left++;
+                right--;
             }
-        }
-        for(int i = s.size() - 1, j = 0; i >= 0; i--){
-            if(s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] =='u'
-            || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] =='U'){
-                s[i] = tmp[j];
-                j++;
-            }
+            else if(!isVowels(s[left])) left++;
+            else if(!isVowels(s[right])) right--;
         }
         return s;
+    }
+    
+    bool isVowels(char ch){
+        if(ch == 'a' || ch == 'A' || ch == 'e' || ch == 'E' || ch == 'i' || ch == 'I' || ch == 'o' || ch == 'O' || ch == 'u' || ch == 'U') return true;
+        return false;
     }
 };

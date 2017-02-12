@@ -1,23 +1,16 @@
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
-        int tag = 0;
+        int curr = 1;
         for(int i = digits.size() - 1; i >= 0; i--){
-            if(i == digits.size() - 1){
-                digits[i] += 1;
-            }
-            digits[i] += tag;
-            if(digits[i] >= 10){
-                digits[i] %= 10;
-                tag = 1;
-            }
+            if(digits[i] == 9 && curr == 1) digits[i] = 0;
             else{
-                tag = 0;
+                digits[i] += curr;
+                curr = 0;
+                break;
             }
         }
-        if(tag == 1){
-            digits.insert(digits.begin(),1);
-        }
+        if(curr == 1) digits.insert(digits.begin(), 1);
         return digits;
     }
 };
