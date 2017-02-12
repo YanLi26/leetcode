@@ -11,12 +11,23 @@
 class Solution {
 public:
     int pathSum(TreeNode* root, int sum) {
-        if(root == NULL) return 0;
-        return sumUp(root, 0, sum) + pathSum(root ->left, sum) + pathSum(root -> right, sum);
+        int res = 0;
+        vector<TreeNode*> out;
+        helper(root, sum, 0, out, res);
+        return res;
     }
-    int sumUp(TreeNode* node, int pre, int &sum){
-        if(node == NULL) return 0;
-        int cur = pre + node -> val;
-        return (cur == sum) + sumUp(node -> left, cur, sum) + sumUp(node -> right, cur, sum);
+    void helper(TreeNode* node, int sum, int curSum, vector<TreeNode*>& out, int& res) {
+        if (!node) return;
+        curSum += node->val;
+        out.push_back(node);
+        if (curSum == sum) ++res;
+        int t = curSum;
+        for (int i = 0; i < out.size() - 1; ++i) {
+            t -= out[i]->val;
+            if (t == sum) ++res;
+        }
+        helper(node->left, sum, curSum, out, res);
+        helper(node->right, sum, curSum, out, res);
+        out.pop_back();
     }
 };
