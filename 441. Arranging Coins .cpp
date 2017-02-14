@@ -1,12 +1,6 @@
 class Solution {
 public:
     int arrangeCoins(int n) {
-        int i = 0;
-        while(n >= i){
-            n -= i;
-            i++;
-        }
-        if(n == i) return i;
-        else return i - 1;
+        return (int)(sqrt(2*(double)n+0.25)-0.5);
     }
 };
