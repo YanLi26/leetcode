@@ -6,21 +6,15 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
- /*https://siddontang.gitbooks.io/leetcode-solution/content/linked_list/linked_list_cycle.html*/
- 
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if(head == NULL || head -> next == NULL) return false;
-        ListNode *fast = head;
         ListNode *slow = head;
-        
-        while(fast -> next != NULL && fast -> next -> next != NULL){
-            fast = fast -> next -> next;
+        ListNode *quick = head;
+        while(quick && quick -> next && quick ->next -> next){
             slow = slow -> next;
-            if(fast == slow){
-                return true;
-            }
+            quick = quick -> next -> next;
+            if(slow == quick) return true;
         }
         return false;
     }

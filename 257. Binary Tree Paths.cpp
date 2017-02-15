@@ -7,22 +7,21 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- /*http://www.cnblogs.com/grandyang/p/4738031.html*/
- 
+ //http://www.cnblogs.com/grandyang/p/4738031.html
 class Solution {
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
-        vector<string> res;
-        if (root) treePath(root, res, "");
+        vector<string>res;
+        if(root) dfs(root,res,"");
         return res;
     }
-    
-    void treePath(TreeNode* root, vector<string> &res, string s){
-        s += to_string(root->val);
-        if(root -> left == NULL && root -> right == NULL) res.push_back(s);
+    void dfs(TreeNode* root, vector<string> &res, string out){
+        out += to_string(root->val);
+        if(!root->left && !root->right) res.push_back(out);
         else{
-            if(root -> left) treePath(root -> left, res, s + "->");
-            if(root -> right) treePath(root -> right, res, s + "->");
+            //use if, if cause we should find all paths
+            if(root->left) dfs(root->left, res, out+"->");
+            if(root->right) dfs(root->right, res, out+"->");
         }
     }
 };

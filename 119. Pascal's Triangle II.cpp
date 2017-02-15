@@ -1,15 +1,19 @@
+//http://www.cnblogs.com/grandyang/p/4031536.html
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-       vector<int> res;
-       if(rowIndex < 0) return res;
-       res.push_back(1);
-       long element = 1;
-       for(int i = 1; i <= rowIndex; i++){
-           element *= (rowIndex + 1 - i);
-           element /= i;
-           res.push_back(element);
-       }
-      return res;
+        vector<int> res;
+        if(rowIndex<0) return res;
+        res.assign(rowIndex+1,0);
+        for(int i=0; i<=rowIndex; i++){
+            if(i==0){
+                res[0]=1;
+                continue;
+            }
+            for(int j=i; j>0; j--){
+                res[j]=res[j]+res[j-1];
+            }
+        }
+        return res;
     }
 };
