@@ -1,11 +1,16 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        int s1[256] = {0}, t1[256] = {0};
+        if(s.size() != t.size()) return false;
+        vector<int> sTag(256, 0);
         for(int i = 0; i < s.size(); i++){
-            if(s1[s[i]] != t1[t[i]]) return false;
-            s1[s[i]] = i + 1;
-            t1[t[i]] = i + 1;
+            if(sTag[s[i]] == 0) sTag[s[i]] = t[i];
+            else if(sTag[s[i]] != t[i]) return false;
+        }
+        if(sTag.size() == 0) return true;
+        sort(sTag.begin(), sTag.end());
+        for(int i = 0; i < sTag.size() - 1; i++){
+            if(sTag[i]!=0 && sTag[i] == sTag[i+1]) return false;
         }
         return true;
     }
