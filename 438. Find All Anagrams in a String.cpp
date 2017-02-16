@@ -2,18 +2,20 @@ class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
         vector<int> res;
-        unordered_map<char, int> map;
-        if (s.empty() || p.empty()) return res;
-        int length_p = p.size(), length_s = s.size(), left = 0, right = 0;
-        for(char c: p) map[c] = 0;
-        for(char c: p) map[c]++;
-        
-        while(right < length_s){
-            if(map[s[right++]]-- > 0) --length_p;
-            if(length_p == 0) res.push_back(left);
-            if(right - left == p.size() && map[s[left++]]++ >= 0) ++length_p;
+        if(s.empty() || p.empty() || s.size() < p.size()) return res;
+        vector<int>pTag(256, 0), sTag(256, 0);
+        for(char a: p){
+            ++pTag[a];
         }
-        
+        for(int i = 0; i < p.size(); i++){
+            ++sTag[s[i]];
+        }
+        if(pTag == sTag) res.push_back(0);
+        for(int i = 1; i <= s.size() - p.size(); i++){
+            --sTag[s[i-1]];
+            ++sTag[s[i+p.size()-1]];
+            if(sTag == pTag) res.push_back(i);
+        }
         return res;
     }
 };
