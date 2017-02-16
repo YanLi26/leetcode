@@ -1,21 +1,27 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string str) {
-        unordered_map<char, string> m;
-        istringstream in(str);
-        int i = 0;
-        for (string word; in >> word; ++i) {
-            if (m.find(pattern[i]) != m.end()) {
-                //there is one pattern that matches more than one words
-                if (m[pattern[i]] != word) return false;
-            } else {
-                //there are more than one patterns that match one word
-                for (unordered_map<char, string>::iterator it = m.begin(); it != m.end(); ++it) {
-                    if (it->second == word) return false;
+        map<char,string> patternMap;
+        int j = 0, count = 1;;
+        for(int i = 0; i < pattern.size(); i++){
+            string tmp;
+            for(; j < str.size(); j++){
+                if(str[j] == ' '){
+                    count++;
+                    j++;
+                    break;
                 }
-                m[pattern[i]] = word;
+                tmp.push_back(str[j]);
             }
+            if(patternMap.find(pattern[i]) == patternMap.end()){
+                for(auto it = patternMap.begin(); it != patternMap.end(); ++it) {
+                    if (it->second == tmp) return false;
+                }
+                patternMap[pattern[i]] = tmp;
+            }
+            else if(patternMap[pattern[i]] != tmp) return false;
         }
-        return i == pattern.size();
+        if(j!=str.size() || count != pattern.size()) return false;
+        return true;
     }
 };
