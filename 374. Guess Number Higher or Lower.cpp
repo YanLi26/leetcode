@@ -6,14 +6,12 @@ int guess(int num);
 class Solution {
 public:
     int guessNumber(int n) {
-        int maxNumber = n, minNumber = 1;
-            while(minNumber <= maxNumber){
-            int midNumber = (maxNumber - minNumber)/2 + minNumber;
-            int res = guess(midNumber);
-            if(res == 0) return midNumber;
-            else if(res == -1) maxNumber = midNumber - 1;
-            else if(res == 1) minNumber = midNumber + 1;
+        int high = n , low = 1;
+        while(guess(n) != 0){
+            n = low + (high - low)/2;
+            if(guess(n) == -1) high = n - 1;
+            else if(guess(n) == 1) low = n + 1;
         }
-        return -1;
+        return n;
     }
 };
