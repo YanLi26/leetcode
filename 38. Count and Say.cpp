@@ -1,25 +1,24 @@
 class Solution {
 public:
     string countAndSay(int n) {
-        if(n < 0) return NULL;
+        if(n<=0)return NULL;
         string res;
         res.push_back('1');
-        if(n == 1) return res;
-        for(int i = 0; i < n - 1; i++){
+        if(n==1) return res;
+        
+        for(int i = 1; i < n; i++){
             string tmp;
-            int tag = 1;
-            for(int i = 0; i < res.size(); i++){
-                if(i == res.size() - 1){
-                    tmp.push_back(tag+'0');
-                    tmp.push_back(res[i]);
+            int count = 1;
+            for(int j = 0; j < res.size(); j++){
+                if(j == res.size() - 1){
+                    tmp.push_back(count+'0');
+                    tmp.push_back(res[j]);
                 }
-                else if(res[i] == res[i+1]){
-                    tag++;
-                }
-                else if(res[i] != res[i+1]){
-                    tmp.push_back(tag+'0');
-                    tmp.push_back(res[i]);
-                    tag = 1;
+                else if(res[j+1] == res[j]) count++;
+                else{
+                    tmp.push_back(count+'0');
+                    tmp.push_back(res[j]);
+                    count=1;
                 }
             }
             res = tmp;
