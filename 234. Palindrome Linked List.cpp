@@ -9,20 +9,20 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        if(!head || !head -> next) return true;
-        ListNode *slow = head;
-        ListNode *fast = head;
-        stack<int> pali;
-        pali.push(slow -> val);
-        while(fast!=NULL && fast -> next != NULL && fast -> next -> next != NULL){
+        if(!head || !head->next) return true;
+        ListNode* slow = head;
+        ListNode* quick = head;
+        stack<int> isPali;
+        isPali.push(slow->val);
+        while(quick && quick -> next && quick->next->next){
             slow = slow -> next;
-            fast = fast -> next -> next;
-            pali.push(slow -> val);
+            quick = quick -> next -> next;
+            isPali.push(slow->val);
         }
-        if(fast -> next == NULL) pali.pop();
-        while(slow -> next){
-            slow = slow -> next;
-            if(slow -> val == pali.top()) pali.pop();
+        if(quick->next==NULL) isPali.pop();
+        while(slow->next){
+            slow = slow->next;
+            if(slow->val == isPali.top()) isPali.pop();
             else return false;
         }
         return true;
