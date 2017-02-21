@@ -1,23 +1,25 @@
 class Solution {
 public:
     string addBinary(string a, string b) {
-        string res = "";
-        int tmp = 0;
-        for(int i = a.size() - 1, j = b.size() - 1; i >= 0 || j >= 0; i--, j--){
+        int curr = 0, aSize = a.size() - 1, bSize = b.size() - 1;
+        string res;
+        while(aSize >= 0 || bSize >= 0){
             char ai, bi;
-            if(i >= 0) ai = a[i]; else ai = '0';
-            if(j >= 0) bi = b[j]; else bi = '0';
-            char m = ai + bi + tmp - '0';
-            if(m > '1'){
-                res.insert(res.begin(), m-2);
-                tmp = 1;
+            if(aSize >= 0) ai = a[aSize]; else ai = '0';
+            if(bSize >= 0) bi = b[bSize]; else bi = '0';
+            char tmp = ai+bi+curr-'0';
+            if(tmp > '1'){
+                curr = 1;
+                res.push_back(tmp-2);
             }
             else{
-                res.insert(res.begin(), m);
-                tmp = 0;
+                curr = 0;
+                res.push_back(tmp);
             }
+            aSize--; bSize--;
         }
-        if(tmp == 1) res.insert(res.begin(), '1');
+        if(curr == 1) res.push_back('1');
+        reverse(res.begin(),res.end());
         return res;
     }
 };
