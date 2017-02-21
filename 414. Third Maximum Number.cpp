@@ -1,13 +1,20 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        nums.push_back(nums[nums.size() - 1]);
-        int tag = 0;
-        for(int i = nums.size() - 2; i >= 0; i--){
-            if(nums[i]<nums[i+1]) tag++;
-            if(tag == 2) return nums[i];
+        if(nums.size() == 0) return NULL;
+        int count = 1, res;
+        sort(nums.begin(),nums.end(), greater<int>());
+        res = nums[0];
+        for(int i = 1; i < nums.size(); i++){
+            if(res != nums[i]){
+                res = nums[i];
+                count++;
+            }
+            if(count == 3) break;
+            cout<<count;
         }
-        return nums[nums.size() - 1];
+        
+        if(count != 3) return nums[0];
+        return res;
     }
 };

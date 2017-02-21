@@ -6,24 +6,24 @@ public:
     }
     
     void push(int x) {
-        s1.push(x);
-        if (s2.empty() || x <= getMin())  s2.push(x);
+        myStack.push(x);
+        if(minStack.empty() || x <= minStack.top()) minStack.push(x);
     }
     
     void pop() {
-        if (s1.top() == getMin())  s2.pop();
-	    s1.pop();
+        if(myStack.top() == minStack.top()) minStack.pop();
+        myStack.pop();
     }
     
     int top() {
-        return s1.top();
+        return myStack.top();
     }
     
     int getMin() {
-        return s2.top();
+        return minStack.top();
     }
 private:
-    stack<int> s1, s2;
+     stack<int> myStack, minStack;
 };
 
 /**
