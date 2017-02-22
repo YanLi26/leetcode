@@ -1,19 +1,19 @@
-//s.insert(s.begin(),'Z');
 class Solution {
 public:
     string convertToTitle(int n) {
-        string s;
+        string res;
         while(n){
-            if(n % 26 == 0){
-                s.insert(s.begin(),'Z');
-                n -= 26;
+            if(n%26==0){
+                res.push_back('Z');
+                n-=26;
             }
             else{
-                s.insert(s.begin(), n % 26 - 1 + 'A');
-                n -= (n % 26);
+                res.push_back(n%26-1+'A');
+                n-=(n%26);
             }
-            n /= 26;
+            n/=26;
         }
-        return s;
+        reverse(res.begin(), res.end());
+        return res;
     }
 };

@@ -4,12 +4,12 @@ bool isBadVersion(int version);
 class Solution {
 public:
     int firstBadVersion(int n) {
-        int low = 1, high = n, mid = 0;
-        while(low < high){
-            mid = low + (high - low)/2;
-            if(isBadVersion(mid)) high = mid;
-            else low = mid + 1;
+        int left = 1, right = n, middle;
+        while(left < right){
+            middle = left + (right - left)/2;
+            if(isBadVersion(middle)) right = middle;
+            else left = middle + 1;
         }
-        return low;
+        return left;
     }
 };
