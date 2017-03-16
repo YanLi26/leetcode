@@ -1,20 +1,20 @@
-#2. Add Two Numbers
-##Difficulty for me
+# 2. Add Two Numbers
+## Difficulty for me
 easy
 
-##Complexity
+## Complexity
 time complexity = O($$n^2$$)
 
 space complexity = O(n)
 
 runtime: beat 48.40%
 
-##Summary
-###Linked List
+## Summary
+### Linked List
 
 建立新链表，判断l1, l2结点是否存在，求每位和
 
-###Tips
+### Tips
 
 1.用表达式减少判断次数
 
