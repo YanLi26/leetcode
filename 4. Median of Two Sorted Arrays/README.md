@@ -1,6 +1,6 @@
 # 4. Median of Two Sorted Arrays
 ## Difficulty for me
-Very Hard
+Hard
 
 ## Reference
 https://discuss.leetcode.com/topic/16797/very-concise-o-log-min-m-n-iterative-solution-with-detailed-explanation
@@ -14,7 +14,7 @@ runtime: beat 99.11%
 
 ## Summary
 ### Binary Search
-把每个数组看成可以切分的点（2*n+1），这样可以同时处理奇数、偶数情况。如果切分的点在两数之间，为偶数情况，中位数为两数合除以2.如果切分点在一个数字上，则中位数为2个这个数字除以2。
+把每个数组看成可以切分的点（2*n+1），这样可以同时处理奇数、偶数情况。如果切分的点在两数之间，为偶数情况，中位数为两数合除以2。如果切分点在一个数字上，则中位数为2个这个数字除以2。
 
 先找出长度短的数组，切分这个数组，另一个数组按照这个数组切分的位置确定应该切分的位置。
 

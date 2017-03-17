@@ -3,7 +3,7 @@
 easy
 
 ## Complexity
-time complexity = O($n^2$)
+time complexity = O(max(m,n))
 
 space complexity = O(n)
 
