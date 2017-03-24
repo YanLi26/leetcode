@@ -5,5 +5,7 @@ first time: study and review algorithms and data structure
 ## optimize latter
 79
 
+89
+
 ## reviewe latter
 10
